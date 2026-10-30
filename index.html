@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Transmittal Portal | IJ Consulting Ltd</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0b0f19; color: #f3f4f6; }
+        .glass-card { background: rgba(17, 24, 39, 0.7); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }
+        .custom-glow { box-shadow: 0 0 25px rgba(59, 130, 246, 0.15); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+    <!-- Top Header / Dual Branding Bar -->
+    <header class="glass-card border-b border-gray-800 py-4 px-6 md:px-12 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            
+<!-- My Company (IJ Consulting Ltd) -->
+<div class="production-logo flex items-center gap-3">
+    <div class="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 p-1">
+        <img src="./assets/ij-logo.png" alt="IJ Consulting Ltd Logo" class="object-contain max-h-full max-w-full">
+    </div>
+    <div>
+        <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Transmitting From</p>
+        <h1 class="text-base font-bold text-white">IJ Consulting Ltd</h1>
+    </div>
+</div>
+
+            <!-- Divider Icon -->
+            <div class="text-gray-500 hidden sm:block">
+                <i class="fa-solid fa-right-left text-sm"></i>
+            </div>
+
+            <!-- Client Company -->
+            <div class="flex items-center gap-3 text-right">
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Prepared For Client</p>
+                    <h2 id="client-name-header" class="text-base font-bold text-white">Loading Client...</h2>
+                </div>
+                <div id="client-logo-container" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center overflow-hidden border border-gray-700">
+                    <img id="client-logo" src="" alt="Client Logo" class="object-contain max-h-full max-w-full hidden">
+                    <i id="client-logo-fallback" class="fa-solid fa-building text-gray-400 text-sm"></i>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full flex-grow">
+        
+        <!-- Global Package Download Banner -->
+        <div class="glass-card rounded-xl p-5 mb-8 flex flex-col md:flex-row items-center justify-between gap-4 custom-glow">
+            <div class="flex items-center gap-4 text-center md:text-left">
+                <div class="w-12 h-12 rounded-full bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl shrink-0 mx-auto md:mx-0">
+                    <i class="fa-solid fa-cloud-arrow-down"></i>
+                </div>
+                <div>
+                    <h3 class="font-semibold text-white text-lg">OneDrive Secure Cloud Package</h3>
+                    <p class="text-sm text-gray-400">Files are securely hosted via OneDrive. Download items individually or grab the full archive.</p>
+                </div>
+            </div>
+            <a id="full-package-btn" href="#" target="_blank" class="w-full md:w-auto px-6 py-2.5 bg-blue-600 hover:bg-blue-500 text-white font-medium rounded-lg text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20">
+                <i class="fa-solid fa-download"></i> Download Full Package (.ZIP)
+            </a>
+        </div>
+
+        <!-- Transmittal Info Card -->
+        <div class="glass-card rounded-xl p-6 mb-8">
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-6 pb-6 border-b border-gray-800">
+                <div>
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="transmittal-badge" class="px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-semibold rounded-full">For Review</span>
+                        <span id="transmittal-number-tag" class="text-gray-400 text-sm font-mono">--</span>
+                    </div>
+                    <h2 id="project-name" class="text-2xl font-bold text-white tracking-tight">Loading Project...</h2>
+                </div>
+                <span class="text-xs text-gray-400 bg-gray-800/60 px-3 py-1.5 rounded-md border border-gray-700/50">Source: JSON Dynamic Feed</span>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Transmittal No.</p>
+                    <p id="meta-transmittal-no" class="text-sm font-bold text-white font-mono">--</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Date Issued</p>
+                    <p id="meta-date" class="text-sm font-bold text-white">--</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Revision Status</p>
+                    <p id="meta-rev-status" class="text-sm font-bold text-white">--</p>
+                </div>
+                <div>
+                    <p class="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1">Project Lead</p>
+                    <p id="meta-pm" class="text-sm font-bold text-white">Ian Jonsen</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Drawings Table Section -->
+        <div class="glass-card rounded-xl overflow-hidden shadow-xl">
+            <div class="p-5 border-b border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>
+                    <h3 class="text-lg font-bold text-white">Transmittal Package Contents</h3>
+                    <p class="text-xs text-gray-400">Showing all drawings and documents included in this transmittal</p>
+                </div>
+                <div class="flex items-center gap-3 w-full md:w-auto">
+                    <div class="relative w-full md:w-64">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        </span>
+                        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search drawing number or title..." class="w-full bg-gray-900/80 border border-gray-700 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
+                    </div>
+                    <select id="formatFilter" onchange="filterTable()" class="bg-gray-900/80 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
+                        <option value="ALL">All Formats</option>
+                        <option value="PDF">PDF</option>
+                        <option value="DWG">DWG</option>
+                        <option value="IFC">IFC</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="border-b border-gray-800 bg-gray-900/40 text-gray-400 text-xs font-semibold uppercase tracking-wider">
+                            <th class="py-3.5 px-6">Item #</th>
+                            <th class="py-3.5 px-6">Drawing Number</th>
+                            <th class="py-3.5 px-6">Description / Title</th>
+                            <th class="py-3.5 px-6">Rev</th>
+                            <th class="py-3.5 px-6">Format</th>
+                            <th class="py-3.5 px-6 text-right">OneDrive Action Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="drawing-table-body" class="divide-y divide-gray-800 text-sm">
+                        <!-- Dynamic rows injected via JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="p-4 border-t border-gray-800 bg-gray-900/20 flex justify-between items-center text-xs text-gray-400">
+                <span id="item-count">Loading items...</span>
+                <span>IJ Consulting Document Control System v2.5</span>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 text-xs text-gray-500 border-t border-gray-800/60 mt-12">
+        &copy; 2026 IJ Consulting Ltd. All rights reserved. Structural & Miscellaneous Steel Detailing.
+    </footer>
+
+    <!-- JavaScript to Load JSON Data Dynamically -->
+    <script>
+        let allDrawings = [];
+
+        async function loadTransmittalData() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const transmittalId = urlParams.get('id') || 'test-project';
+            
+            try {
+                const response = await fetch(`./data/${transmittalId}.json`);
+                if (!response.ok) throw new Error('Transmittal data package not found.');
+                
+                const data = await response.json();
+                
+                // Populate Client Info Header
+                document.getElementById('client-name-header').innerText = data.clientName || 'Client Corporation';
+                if (data.clientLogoUrl) {
+                    const logoImg = document.getElementById('client-logo');
+                    logoImg.src = data.clientLogoUrl;
+                    logoImg.classList.remove('hidden');
+                    document.getElementById('client-logo-fallback').classList.add('hidden');
+                }
+
+                // Populate Metadata
+                document.getElementById('transmittal-number-tag').innerText = data.transmittalNumber || 'T-000';
+                document.getElementById('project-name').innerText = data.projectName || 'Structural Project';
+                document.getElementById('meta-transmittal-no').innerText = data.transmittalNumber || '--';
+                document.getElementById('meta-date').innerText = data.date || '--';
+                document.getElementById('meta-rev-status').innerText = data.revisionStatus || 'Rev 0';
+                if (data.projectLead) {
+                    document.getElementById('meta-pm').innerText = data.projectLead;
+                }
+
+                // Global ZIP Download Link
+                if (data.fullPackageUrl) {
+                    document.getElementById('full-package-btn.href').href = data.fullPackageUrl;
+                } else {
+                    document.getElementById('full-package-btn').style.display = 'none';
+                }
+
+                // Store and Render Drawings
+                allDrawings = data.drawings || [];
+                renderTable(allDrawings);
+
+            } catch (error) {
+                console.error("Error loading data:", error);
+                document.getElementById('project-name').innerText = "Transmittal Package Not Found";
+                document.getElementById('drawing-table-body').innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500">Could not load transmittal ID. Please check your link or contact Ian Jonsen at IJ Consulting Ltd.</td></tr>`;
+                document.getElementById('item-count').innerText = "0 items";
+            }
+        }
+
+        function renderTable(drawings) {
+            const tableBody = document.getElementById('drawing-table-body');
+            tableBody.innerHTML = '';
+
+            if (drawings.length === 0) {
+                tableBody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500">No matching drawings found.</td></tr>`;
+                document.getElementById('item-count').innerText = "Showing 0 items";
+                return;
+            }
+
+            drawings.forEach((item, index) => {
+                const itemNum = String(index + 1).padStart(2, '0');
+                const row = `
+                    <tr class="hover:bg-gray-800/40 transition-colors">
+                        <td class="py-4 px-6 text-gray-400 font-mono">#${itemNum}</td>
+                        <td class="py-4 px-6 font-bold text-white font-mono">${item.number}</td>
+                        <td class="py-4 px-6 text-gray-300">${item.title}</td>
+                        <td class="py-4 px-6"><span class="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs font-mono border border-gray-700">${item.rev}</span></td>
+                        <td class="py-4 px-6"><span class="px-2 py-0.5 bg-red-500/10 text-red-400 rounded text-xs font-semibold border border-red-500/20">${item.type}</span></td>
+                        <td class="py-4 px-6 text-right">
+                            <a href="${item.oneDriveUrl}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 rounded-lg text-xs font-medium transition-all">
+                                <i class="fa-solid fa-cloud-arrow-down"></i> OneDrive Download
+                            </a>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            document.getElementById('item-count').innerText = `Showing ${drawings.length} items`;
+        }
+
+        function filterTable() {
+            const searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            const formatQuery = document.getElementById('formatFilter').value;
+
+            const filtered = allDrawings.filter(item => {
+                const matchesSearch = item.number.toLowerCase().includes(searchQuery) || item.title.toLowerCase().includes(searchQuery);
+                const matchesFormat = formatQuery === 'ALL' || item.type.toUpperCase() === formatQuery;
+                return matchesSearch && matchesFormat;
+            });
+
+            renderTable(filtered);
+        }
+
+        window.onload = loadTransmittalData;
+    </script>
+</body>
+</html>

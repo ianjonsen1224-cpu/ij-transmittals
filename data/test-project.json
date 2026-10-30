@@ -1,0 +1,23 @@
+{
+    "transmittalNumber": "T-2026-001",
+    "projectName": "Sample Structural Project",
+    "date": "October 30, 2026",
+    "clientLogoUrl": "https://via.placeholder.com/150x50?text=Client+Logo",
+    "myLogoUrl": "https://via.placeholder.com/150x50?text=IJ+Consulting",
+    "drawings": [
+        {
+            "number": "S-101",
+            "title": "Anchor Bolt Plan & Foundation Details",
+            "rev": "1",
+            "type": "PDF",
+            "oneDriveUrl": "https://onedrive.live.com"
+        },
+        {
+            "number": "S-102",
+            "title": "Framing Plan - Level 1",
+            "rev": "2",
+            "type": "DWG",
+            "oneDriveUrl": "https://onedrive.live.com"
+        }
+    ]
+}
