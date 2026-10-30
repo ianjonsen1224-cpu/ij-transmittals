@@ -1,0 +1,18 @@
+{
+    "transmittalNumber": "TR-03",
+    "projectName": "2236_ASHLEIGH_ETRO",
+    "projectLead": "Ian Jonsen",
+    "date": "2026-10-30",
+    "clientName": "Jaw",
+    "clientLogoUrl": "./assets/ij-logo.png",
+    "fullPackageUrl": "https://1drv.ms/",
+    "drawings": [
+        {
+            "number": "11x17",
+            "title": "11x17",
+            "rev": "1",
+            "type": "PDF",
+            "oneDriveUrl": "https://1drv.ms/"
+        }
+    ]
+}
