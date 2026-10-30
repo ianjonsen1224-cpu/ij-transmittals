@@ -19,16 +19,16 @@
     <header class="glass-card border-b border-gray-800 py-4 px-6 md:px-12 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
             
-<!-- My Company (IJ Consulting Ltd) -->
-<div class="production-logo flex items-center gap-3">
-    <div class="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 p-1">
-        <img src="./assets/ij-logo.png" alt="IJ Consulting Ltd Logo" class="object-contain max-h-full max-w-full">
-    </div>
-    <div>
-        <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Transmitting From</p>
-        <h1 class="text-base font-bold text-white">IJ Consulting Ltd</h1>
-    </div>
-</div>
+            <!-- My Company (IJ Consulting Ltd) -->
+            <div class="production-logo flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 p-1">
+                    <img src="./assets/ij-logo.png" alt="IJ Consulting Ltd Logo" class="object-contain max-h-full max-w-full">
+                </div>
+                <div>
+                    <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Transmitting From</p>
+                    <h1 class="text-base font-bold text-white">IJ Consulting Ltd</h1>
+                </div>
+            </div>
 
             <!-- Divider Icon -->
             <div class="text-gray-500 hidden sm:block">
@@ -41,9 +41,11 @@
                     <p class="text-xs uppercase tracking-wider text-gray-400 font-semibold">Prepared For Client</p>
                     <h2 id="client-name-header" class="text-base font-bold text-white">Loading Client...</h2>
                 </div>
-                <div id="client-logo-container" class="w-10 h-10 rounded-lg bg-gray-800 flex items-center justify-center overflow-hidden border border-gray-700">
-                    <img id="client-logo" src="" alt="Client Logo" class="object-contain max-h-full max-w-full hidden">
-                    <i id="client-logo-fallback" class="fa-solid fa-building text-gray-400 text-sm"></i>
+                <!-- Client Logo / Name Fallback Display -->
+                <div class="client-brand-container w-10 h-10 rounded-lg bg-gray-900 flex items-center justify-center overflow-hidden border border-gray-700 p-1">
+                    <img id="client-logo-img" src="" alt="Client Logo" class="object-contain max-h-full max-w-full" onerror="this.style.display='none'; document.getElementById('client-name-text').style.display='inline-block'; document.getElementById('client-fallback-icon').style.display='none';">
+                    <span id="client-name-text" style="display: none; font-size: 0.8rem; font-weight: bold; color: #e5e5e5; text-align: center;"></span>
+                    <i id="client-fallback-icon" class="fa-solid fa-building text-gray-400 text-sm"></i>
                 </div>
             </div>
 
@@ -107,20 +109,18 @@
             <div class="p-5 border-b border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
                 <div>
                     <h3 class="text-lg font-bold text-white">Transmittal Package Contents</h3>
-                    <p class="text-xs text-gray-400">Showing all drawings and documents included in this transmittal</p>
+                    <p class="text-xs text-gray-400">Showing summary archive bundle included in this transmittal</p>
                 </div>
                 <div class="flex items-center gap-3 w-full md:w-auto">
                     <div class="relative w-full md:w-64">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
                             <i class="fa-solid fa-magnifying-glass text-xs"></i>
                         </span>
-                        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search drawing number or title..." class="w-full bg-gray-900/80 border border-gray-700 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
+                        <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search package or title..." class="w-full bg-gray-900/80 border border-gray-700 rounded-lg pl-9 pr-4 py-2 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-blue-500">
                     </div>
                     <select id="formatFilter" onchange="filterTable()" class="bg-gray-900/80 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-blue-500">
                         <option value="ALL">All Formats</option>
-                        <option value="PDF">PDF</option>
-                        <option value="DWG">DWG</option>
-                        <option value="IFC">IFC</option>
+                        <option value="ZIP">ZIP / Package</option>
                     </select>
                 </div>
             </div>
@@ -130,9 +130,9 @@
                     <thead>
                         <tr class="border-b border-gray-800 bg-gray-900/40 text-gray-400 text-xs font-semibold uppercase tracking-wider">
                             <th class="py-3.5 px-6">Item #</th>
-                            <th class="py-3.5 px-6">Drawing Number</th>
+                            <th class="py-3.5 px-6">Transmittal No.</th>
                             <th class="py-3.5 px-6">Description / Title</th>
-                            <th class="py-3.5 px-6">Rev</th>
+                            <th class="py-3.5 px-6">Purpose / Rev</th>
                             <th class="py-3.5 px-6">Format</th>
                             <th class="py-3.5 px-6 text-right">OneDrive Action Link</th>
                         </tr>
@@ -170,13 +170,22 @@
                 
                 const data = await response.json();
                 
-                // Populate Client Info Header
-                document.getElementById('client-name-header').innerText = data.clientName || 'Client Corporation';
-                if (data.clientLogoUrl) {
-                    const logoImg = document.getElementById('client-logo');
+                // Populate Client Info Header with Name & Logo Fallback
+                const clientName = data.clientName || 'Client Corporation';
+                document.getElementById('client-name-header').innerText = clientName;
+                
+                if (data.clientLogoUrl && !data.clientLogoUrl.includes("placeholder")) {
+                    const logoImg = document.getElementById('client-logo-img');
                     logoImg.src = data.clientLogoUrl;
-                    logoImg.classList.remove('hidden');
-                    document.getElementById('client-logo-fallback').classList.add('hidden');
+                    logoImg.style.display = 'block';
+                    document.getElementById('client-fallback-icon').style.display = 'none';
+                    document.getElementById('client-name-text').style.display = 'none';
+                } else {
+                    document.getElementById('client-logo-img').style.display = 'none';
+                    document.getElementById('client-fallback-icon').style.display = 'none';
+                    const nameText = document.getElementById('client-name-text');
+                    nameText.innerText = clientName.split(' ')[0]; // Show short name in badge if no logo image
+                    nameText.style.display = 'inline-block';
                 }
 
                 // Populate Metadata
@@ -191,12 +200,12 @@
 
                 // Global ZIP Download Link
                 if (data.fullPackageUrl) {
-                    document.getElementById('full-package-btn.href').href = data.fullPackageUrl;
+                    document.getElementById('full-package-btn').href = data.fullPackageUrl;
                 } else {
                     document.getElementById('full-package-btn').style.display = 'none';
                 }
 
-                // Store and Render Drawings
+                // Store and Render Package Summary Rows
                 allDrawings = data.drawings || [];
                 renderTable(allDrawings);
 
@@ -213,7 +222,7 @@
             tableBody.innerHTML = '';
 
             if (drawings.length === 0) {
-                tableBody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500">No matching drawings found.</td></tr>`;
+                tableBody.innerHTML = `<tr><td colspan="6" class="py-8 text-center text-gray-500">No matching package archives found.</td></tr>`;
                 document.getElementById('item-count').innerText = "Showing 0 items";
                 return;
             }
@@ -224,9 +233,12 @@
                     <tr class="hover:bg-gray-800/40 transition-colors">
                         <td class="py-4 px-6 text-gray-400 font-mono">#${itemNum}</td>
                         <td class="py-4 px-6 font-bold text-white font-mono">${item.number}</td>
-                        <td class="py-4 px-6 text-gray-300">${item.title}</td>
+                        <td class="py-4 px-6 text-gray-300">
+                            <div class="font-semibold">${item.title}</div>
+                            <div class="text-xs text-blue-400">${item.filesIncluded || ''}</div>
+                        </td>
                         <td class="py-4 px-6"><span class="px-2 py-0.5 bg-gray-800 text-gray-300 rounded text-xs font-mono border border-gray-700">${item.rev}</span></td>
-                        <td class="py-4 px-6"><span class="px-2 py-0.5 bg-red-500/10 text-red-400 rounded text-xs font-semibold border border-red-500/20">${item.type}</span></td>
+                        <td class="py-4 px-6"><span class="px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded text-xs font-semibold border border-blue-500/20">${item.type}</span></td>
                         <td class="py-4 px-6 text-right">
                             <a href="${item.oneDriveUrl}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white border border-blue-500/30 rounded-lg text-xs font-medium transition-all">
                                 <i class="fa-solid fa-cloud-arrow-down"></i> OneDrive Download
@@ -246,7 +258,7 @@
 
             const filtered = allDrawings.filter(item => {
                 const matchesSearch = item.number.toLowerCase().includes(searchQuery) || item.title.toLowerCase().includes(searchQuery);
-                const matchesFormat = formatQuery === 'ALL' || item.type.toUpperCase() === formatQuery;
+                const matchesFormat = formatQuery === 'ALL' || item.type.toUpperCase().includes(formatQuery);
                 return matchesSearch && matchesFormat;
             });
 
