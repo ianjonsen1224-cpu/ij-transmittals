@@ -1,15 +1,15 @@
 {
-    "transmittalNumber": "TR-02",
+    "transmittalNumber": "TR-03",
     "projectName": "Duke",
     "projectLead": "Ian Jonsen",
-    "date": "2026-10-30",
+    "date": "2026-10-31",
     "clientName": "JD_Steel",
     "clientLogoUrl": "./assets/client-logo-placeholder.png",
-    "fullPackageUrl": "https://1drv.ms/",
+    "fullPackageUrl": "https://drive.google.com/drive/u/0/folders/1lpOivH1A0V_vWMg951b9ovrgUhcQB7-Q",
     "drawings": [
         {
-            "number": "TR-02",
-            "title": "Complete Package Archive (TR-02_2026-10-30_IFA)",
+            "number": "TR-03",
+            "title": "Complete Package Archive (TR-03_2026-10-31_IFA)",
             "rev": "Approval",
             "type": "ZIP / Package",
             "oneDriveUrl": "https://1drv.ms/"
