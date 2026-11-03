@@ -1,0 +1,18 @@
+{
+    "transmittalNumber": "TR-03",
+    "projectName": "M-PV1-Stair",
+    "projectLead": "Ian Jonsen",
+    "date": "2026-11-03",
+    "clientName": "Austin_Metals",
+    "clientLogoUrl": "./assets/client-logo-placeholder.png",
+    "fullPackageUrl": "https://1drv.ms/",
+    "drawings": [
+        {
+            "number": "TR-03",
+            "title": "Complete Package Archive (TR-03_2026-11-03_IFF)",
+            "rev": "Shop Issue",
+            "type": "ZIP / Package",
+            "oneDriveUrl": "https://1drv.ms/"
+        }
+    ]
+}
