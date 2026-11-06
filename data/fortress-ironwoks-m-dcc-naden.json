@@ -1,0 +1,18 @@
+{
+    "transmittalNumber": "TR-01",
+    "projectName": "M-DCC_Naden",
+    "projectLead": "Ian Jonsen",
+    "date": "2026-11-06",
+    "clientName": "Fortress Ironwoks",
+    "clientLogoUrl": "./assets/client-logo-placeholder.png",
+    "fullPackageUrl": "https://1drv.ms/",
+    "drawings": [
+        {
+            "number": "TR-01",
+            "title": "Complete Package Archive (TR-01_2026-11-06_IFF)",
+            "rev": "Shop Issue",
+            "type": "ZIP / Package",
+            "oneDriveUrl": "https://1drv.ms/"
+        }
+    ]
+}
