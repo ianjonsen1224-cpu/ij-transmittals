@@ -1,0 +1,18 @@
+{
+    "transmittalNumber": "TR-01",
+    "projectName": "M-Bankside_Library_Square",
+    "projectLead": "Ian Jonsen",
+    "date": "2026-11-11",
+    "clientName": "Impact_Iron",
+    "clientLogoUrl": "./assets/client-logo-placeholder.png",
+    "fullPackageUrl": "https://1drv.ms/",
+    "drawings": [
+        {
+            "number": "TR-01",
+            "title": "Complete Package Archive (TR-01_2026-11-11_IFA)",
+            "rev": "Approval",
+            "type": "ZIP / Package",
+            "oneDriveUrl": "https://1drv.ms/"
+        }
+    ]
+}
