@@ -1,16 +1,16 @@
 {
-    "transmittalNumber": "TR-01",
+    "transmittalNumber": "TR-02",
     "projectName": "55_West_Hastings",
     "projectLead": "Ian Jonsen",
-    "date": "2026-11-06",
+    "date": "2026-11-20",
     "clientName": "Rays_welding",
     "clientLogoUrl": "./assets/client-logo-placeholder.png",
     "fullPackageUrl": "https://1drv.ms/",
     "drawings": [
         {
-            "number": "TR-01",
-            "title": "Complete Package Archive (TR-01_2026-11-06_IFA)",
-            "rev": "Approval",
+            "number": "TR-02",
+            "title": "Complete Package Archive (TR-02_2026-11-20_IFF)",
+            "rev": "Shop Issue",
             "type": "ZIP / Package",
             "oneDriveUrl": "https://1drv.ms/"
         }
