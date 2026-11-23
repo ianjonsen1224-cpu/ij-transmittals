@@ -1,0 +1,18 @@
+{
+    "transmittalNumber": "TR-02",
+    "projectName": "Cambie_canopy",
+    "projectLead": "Ian Jonsen",
+    "date": "2026-11-23",
+    "clientName": "Rays_welding",
+    "clientLogoUrl": "./assets/client-logo-placeholder.png",
+    "fullPackageUrl": "https://1drv.ms/",
+    "drawings": [
+        {
+            "number": "TR-02",
+            "title": "Complete Package Archive (TR-02_2026-11-23_IFA)",
+            "rev": "Approval",
+            "type": "ZIP / Package",
+            "oneDriveUrl": "https://1drv.ms/"
+        }
+    ]
+}
